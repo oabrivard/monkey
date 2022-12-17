@@ -1,3 +1,11 @@
+# dev tools
+.vscode/
+*.code-workspace
+.idea/
+
+# Profiler output
+*.pb.gz
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
