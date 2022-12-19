@@ -16,6 +16,14 @@ const (
 	// Operators
 	ASSIGN
 	PLUS
+	MINUS
+	BANG
+	ASTERISK
+	SLASH
+	LT
+	GT
+	EQ
+	NOT_EQ
 	// Delimiters
 	COMMA
 	SEMICOLON
@@ -26,6 +34,11 @@ const (
 	// Keywords
 	FUNCTION
 	LET
+	IF
+	ELSE
+	RETURN
+	TRUE
+	FALSE
 )
 
 func (t TokenType) String() string {
@@ -39,9 +52,25 @@ func (t TokenType) String() string {
 	case INT:
 		return "INT"
 	case ASSIGN:
-		return "return"
+		return "="
 	case PLUS:
 		return "+"
+	case MINUS:
+		return "-"
+	case BANG:
+		return "!"
+	case ASTERISK:
+		return "*"
+	case SLASH:
+		return "/"
+	case LT:
+		return "<"
+	case GT:
+		return ">"
+	case EQ:
+		return "=="
+	case NOT_EQ:
+		return "!="
 	case COMMA:
 		return ","
 	case SEMICOLON:
@@ -58,6 +87,16 @@ func (t TokenType) String() string {
 		return "FUNCTION"
 	case LET:
 		return "LET"
+	case IF:
+		return "IF"
+	case ELSE:
+		return "ELSE"
+	case RETURN:
+		return "RETURN"
+	case TRUE:
+		return "TRUE"
+	case FALSE:
+		return "FALSE"
 	}
 
 	panic("unknown token type")
@@ -65,8 +104,13 @@ func (t TokenType) String() string {
 
 func LookupIdent(ident string) TokenType {
 	keywords := map[string]TokenType{
-		"fn":  FUNCTION,
-		"let": LET,
+		"fn":     FUNCTION,
+		"let":    LET,
+		"true":   TRUE,
+		"false":  FALSE,
+		"if":     IF,
+		"else":   ELSE,
+		"return": RETURN,
 	}
 
 	if tok, ok := keywords[ident]; ok {
